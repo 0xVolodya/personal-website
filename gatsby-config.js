@@ -45,6 +45,12 @@ module.exports = {
           },
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
+          {
+            resolve: `gatsby-plugin-layout`,
+            options: {
+              component: require.resolve(`./src/components/layout`),
+            },
+          },
           `gatsby-remark-smartypants`,
         ],
       },

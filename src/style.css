@@ -251,7 +251,26 @@ a:focus {
 }
 
 .global-header {
-  margin-bottom: var(--spacing-12);
+  align-items:center;
+  padding: 2em;
+  display: flex;
+  justify-content:space-between;
+  width: 80%;
+  margin: auto;
+}
+
+.global-header--right {
+  display: flex;
+}
+
+.navigation-item {
+  margin-right: 1em;
+  color: rgb(109, 109, 109);
+  text-decoration: none;
+}
+
+.item-bold {
+  color: black;
 }
 
 .main-heading {
