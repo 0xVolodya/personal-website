@@ -2,17 +2,22 @@ import * as React from "react"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
-import Layout from "../components/layout"
+import WorkExperience from "../components/WorkExperience/WorkExperience"
 import SEO from "../components/seo"
+import styled from "styled-components"
+
+const WorkContainer = styled.div`
+  width: 80%;
+  margin: auto;
+  padding: 0;
+`
 
 const AboutIndex = ({ location }) => {
-
   return (
     <div>
-      <h1>Hi, I'm Vladimir Lebedev</h1>
-      <div>I am a full-stack developer</div>
-
-      <button>Get resume</button>
+      <WorkContainer>
+        <WorkExperience/>
+      </WorkContainer>
     </div>
   )
 }

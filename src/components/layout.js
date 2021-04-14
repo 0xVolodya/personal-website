@@ -1,42 +1,37 @@
-import * as React from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import React from "react"
+import PropTypes from "prop-types"
+import { useStaticQuery, graphql } from "gatsby"
 
-const Layout = ({ location, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
-  const isRootPath = location.pathname === rootPath
-  let headerList = [{ title: "Home", to: "/home" }, { title: "About", to: "/about" }, { title: "Blog", to: "/blog" }]
+import "./layout.css"
+import Navbar from "./navbar/navbar"
 
-  headerList = headerList.map(item => {
-    item.bold = item.to === location.pathname
-    return item
-  })
+const Layout = ({ children }) => {
+  const data = useStaticQuery(graphql`
+    query SiteTitleQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `)
+
   return (
-    <div data-is-root-path={isRootPath}>
-      <header className="global-header">
-        <Link to="/">
-          <StaticImage className="bio-avatar" src="../images/retro-game.svg"
-                       layout="fixed"
-                       formats={["AUTO", "WEBP", "AVIF"]}
-                       width={50}
-                       height={50}
-                       quality={95}
-                       alt="Profile picture" />
-        </Link>
-        <div className="global-header--right">
-          {headerList.map(item =>
-            <Link key={item.title} to={item.to}
-                  className={`navigation-item ${item.bold ? "item-bold" : ""}`}>{item.title}</Link>
-          )}</div>
-      </header>
+    <>
+      <Navbar />
+
       <main>{children}</main>
       <footer>
         © {new Date().getFullYear()}, Built with
         {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
+        <a href="https://www.gatsbyjs.org">Gatsby</a>
       </footer>
-    </div>
+    </>
   )
+}
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
 }
 
 export default Layout

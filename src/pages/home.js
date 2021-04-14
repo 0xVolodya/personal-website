@@ -5,8 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const HomeiIndex = ({ location }) => {
-
+const HomeIndex = ({ location }) => {
   return (
     <div>
       <SEO title="About" />
@@ -15,4 +14,4 @@ const HomeiIndex = ({ location }) => {
   )
 }
 
-export default HomeiIndex
+export default HomeIndex
