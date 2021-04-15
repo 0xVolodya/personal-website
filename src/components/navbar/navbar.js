@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import NavbarLinks from "./links"
-import { StaticImage } from "gatsby-plugin-image"
 
 const Navigation = styled.nav`
   height: 10vh;

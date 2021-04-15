@@ -60,7 +60,7 @@ typings/
 # Mac files
 .DS_Store
 
-# Yarn
+# Yarng
 yarn-error.log
 .pnp/
 .pnp.js

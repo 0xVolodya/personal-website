@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
-import WorkExperience from "../components/WorkExperience/WorkExperience"
+import WorkExperience from "../components/WorkExperience"
 import SEO from "../components/seo"
 import styled from "styled-components"
 
