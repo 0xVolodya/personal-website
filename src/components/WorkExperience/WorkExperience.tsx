@@ -18,11 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       height: "100%",
       margin: "auto",
-      transition: "transform .2s", /* Animation */
+      transition: "transform .2s" /* Animation */,
       maxWidth: 500,
-      '&:hover':{
+      "&:hover": {
         transform: "scale(1.1)",
-      }
+      },
     },
     image: {
       width: 128,
@@ -48,7 +48,7 @@ const WorkImageWrapper = styled.div`
   align-items: center;
 `
 
-const WorkImage = styled.img`
+const WorkImage = styled.div`
   max-width: 100%;
   max-height: 100%;
   margin: 0;
@@ -70,7 +70,15 @@ const WorkExperience = function WorkExperience() {
             title
             href
             date
-            logo
+            logo {
+              childImageSharp {
+                gatsbyImageData(
+                  width: 100
+                  placeholder: BLURRED
+                  formats: [AUTO, WEBP, AVIF]
+                )
+              }
+            }
           }
         }
       }
@@ -83,12 +91,13 @@ const WorkExperience = function WorkExperience() {
       <Grid container spacing={2}>
         {array.map((item, index) => {
           item = item.node
+          const image = getImage(item.logo)
           return (
             <Grid item lg={5} xs={12} key={index} className={classes.grid}>
               <Paper className={classes.paper}>
                 <Link to={item.href} className="link-wrapper">
                   <WorkImageWrapper>
-                    <WorkImage src={item.logo} alt="new" />
+                    <GatsbyImage image={image} alt="new" />
                   </WorkImageWrapper>
                   <Description>
                     <Typography gutterBottom variant="subtitle1">

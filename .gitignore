@@ -56,11 +56,12 @@ typings/
 
 # gatsby files
 .cache/
+public
 
 # Mac files
 .DS_Store
 
-# Yarng
+# Yarn
 yarn-error.log
 .pnp/
 .pnp.js
