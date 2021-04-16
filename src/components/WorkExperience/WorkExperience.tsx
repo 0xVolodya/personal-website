@@ -5,7 +5,7 @@ import Paper from "@material-ui/core/Paper"
 import Typography from "@material-ui/core/Typography"
 import ButtonBase from "@material-ui/core/ButtonBase"
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, Link, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -18,7 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       height: "100%",
       margin: "auto",
+      transition: "transform .2s", /* Animation */
       maxWidth: 500,
+      '&:hover':{
+        transform: "scale(1.1)",
+      }
     },
     image: {
       width: 128,
@@ -74,28 +78,33 @@ const WorkExperience = function WorkExperience() {
   `)
   const array = data.allWorkExperienceJson.edges
   return (
-    <Grid container spacing={2}>
-      {array.map((item, index) => {
-        item = item.node
-        return (
-          <Grid item lg={6} xs={12} key={index} className={classes.grid}>
-            <Paper className={classes.paper}>
-              <WorkImageWrapper>
-                <WorkImage src={item.logo} alt="new" />
-              </WorkImageWrapper>
-              <Description>
-                <Typography gutterBottom variant="subtitle1">
-                  {item.title}
-                </Typography>
-                <Typography gutterBottom variant="subtitle1">
-                  {item.date}
-                </Typography>
-              </Description>
-            </Paper>
-          </Grid>
-        )
-      })}
-    </Grid>
+    <div>
+      <h4>Work Experience</h4>
+      <Grid container spacing={2}>
+        {array.map((item, index) => {
+          item = item.node
+          return (
+            <Grid item lg={5} xs={12} key={index} className={classes.grid}>
+              <Paper className={classes.paper}>
+                <Link to={item.href} className="link-wrapper">
+                  <WorkImageWrapper>
+                    <WorkImage src={item.logo} alt="new" />
+                  </WorkImageWrapper>
+                  <Description>
+                    <Typography gutterBottom variant="subtitle1">
+                      {item.title}
+                    </Typography>
+                    <Typography gutterBottom variant="subtitle1">
+                      {item.date}
+                    </Typography>
+                  </Description>
+                </Link>
+              </Paper>
+            </Grid>
+          )
+        })}
+      </Grid>
+    </div>
   )
 }
 

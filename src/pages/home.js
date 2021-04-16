@@ -9,7 +9,6 @@ const HomeIndex = ({ location }) => {
   return (
     <div>
       <SEO title="About" />
-      <Bio />
     </div>
   )
 }

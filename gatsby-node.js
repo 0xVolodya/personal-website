@@ -6,12 +6,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // Define a template for blog post
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
-
+  const jobPost = path.resolve(`./src/templates/job-description.js`)
   // Get all markdown blog posts sorted by date
-  const result = await graphql(
+  const blogResult = await graphql(
     `
       {
         allMarkdownRemark(
+          filter: { fileAbsolutePath: { regex: "/blog/" } }
           sort: { fields: [frontmatter___date], order: ASC }
           limit: 1000
         ) {
@@ -26,7 +27,30 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     `
   )
 
-  if (result.errors) {
+  // Get all works
+  const jobResult = await graphql(`
+    {
+      allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/job/" } }
+        sort: { fields: [frontmatter___date], order: ASC }
+      ) {
+        nodes {
+          id
+          fields {
+            slug
+          }
+        }
+      }
+    }
+  `)
+  if (blogResult.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      blogResult.errors
+    )
+    return
+  }
+  if (jobResult.errors) {
     reporter.panicOnBuild(
       `There was an error loading your blog posts`,
       result.errors
@@ -34,7 +58,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const posts = result.data.allMarkdownRemark.nodes
+  const posts = blogResult.data.allMarkdownRemark.nodes
+  const jobs = jobResult.data.allMarkdownRemark.nodes
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
@@ -46,12 +71,29 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
 
       createPage({
-        path: post.fields.slug,
+        path: `/blog${post.fields.slug}`,
         component: blogPost,
         context: {
           id: post.id,
           previousPostId,
           nextPostId,
+        },
+      })
+    })
+  }
+
+  if (jobs.length > 0) {
+    jobs.forEach((job, index) => {
+      const previousJobId = index === 0 ? null : jobs[index - 1].id
+      const nextJobId = index === jobs.length - 1 ? null : jobs[index + 1].id
+
+      createPage({
+        path: `/job${job.fields.slug}`,
+        component: jobPost,
+        context: {
+          id: job.id,
+          previousJobId,
+          nextJobId,
         },
       })
     })

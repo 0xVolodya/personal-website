@@ -5,6 +5,7 @@ import Bio from "../components/bio"
 import SEO from "../components/seo"
 import WorkExperience from "../components/WorkExperience"
 import Introduction from "../components/Introduction"
+import Divider from "../components/utils-components/divider"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -17,11 +18,16 @@ const BlogIndex = ({ data, location }) => {
   // const posts = data.allMarkdownRemark.nodes
 
   return (
-    <Wrapper>
+    <div>
       <SEO title="Main page" />
-      <Introduction />
-      <WorkExperience />
-    </Wrapper>
+      <Wrapper>
+        <Introduction />
+      </Wrapper>
+      <Divider />
+      <Wrapper>
+        <WorkExperience />
+      </Wrapper>
+    </div>
   )
 }
 

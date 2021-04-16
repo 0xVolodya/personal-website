@@ -2,17 +2,15 @@ import * as React from "react"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
-import BlogWrapper from "../components/BlogWrapper"
 
-const BlogPostTemplate = ({ data, location }) => {
+const WorkPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
 
   return (
-    <div className="global-wrapper">
+    <div>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
@@ -44,14 +42,14 @@ const BlogPostTemplate = ({ data, location }) => {
         >
           <li>
             {previous && (
-              <Link to={`/blog${previous.fields.slug}`} rel="prev">
+              <Link to={`/job${previous.fields.slug}`} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={`/blog${next.fields.slug}`} rel="next">
+              <Link to={`/job${next.fields.slug}`} rel="next">
                 {next.frontmatter.title} →
               </Link>
             )}
@@ -62,13 +60,13 @@ const BlogPostTemplate = ({ data, location }) => {
   )
 }
 
-export default BlogPostTemplate
+export default WorkPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug(
+  query BlogWorkBySlug(
     $id: String!
-    $previousPostId: String
-    $nextPostId: String
+    $previousJobId: String
+    $nextJobId: String
   ) {
     site {
       siteMetadata {
@@ -85,7 +83,7 @@ export const pageQuery = graphql`
         description
       }
     }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
+    previous: markdownRemark(id: { eq: $previousJobId }) {
       fields {
         slug
       }
@@ -93,7 +91,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    next: markdownRemark(id: { eq: $nextPostId }) {
+    next: markdownRemark(id: { eq: $nextJobId }) {
       fields {
         slug
       }
