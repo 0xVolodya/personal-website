@@ -1,17 +1,18 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import './style.css'
 
 const WorkPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
-  const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
+  const image = getImage(post.frontmatter.logo)
 
   return (
-    <div>
-      <SEO
+    <div className="global-wrapper">
+      <Seo
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
       />
@@ -21,8 +22,8 @@ const WorkPostTemplate = ({ data, location }) => {
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <div className="post-job-image"><GatsbyImage image={image} alt="new" /></div>
+          <h2 itemProp="headline">{post.frontmatter.title}</h2>
         </header>
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
@@ -81,6 +82,15 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        logo {
+          childImageSharp {
+            gatsbyImageData(
+              width: 100
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
+          }
+        }
       }
     }
     previous: markdownRemark(id: { eq: $previousJobId }) {

@@ -319,6 +319,8 @@ a:focus {
   margin-bottom: var(--spacing-0);
   min-width: 50px;
   border-radius: 100%;
+  width: 10vh;
+  height: 10vh;
 }
 
 .blog-post header h1 {

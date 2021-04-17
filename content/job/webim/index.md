@@ -1,15 +1,21 @@
 ---
-title: readme
-date: "2015-05-01T22:12:03.284Z"
-description: "Hello World 12213"
+title: Webim - React node developer
+date: "2014-05-01T22:12:03.284Z"
+description: "React node developer"
+logo: ../../../src/images/webim.png
 ---
 
+I've been working for [Webim](https://webim.ru/) in period of time September 2016 - March 2018.
 
-Wow! I love blogging so much already.
+We helped fitness coach to build an app. Full description you can find you [here](https://recomp.com.au/recomposer-software/).
+We created web version and mobile version for him. In a team of 3 I helped to build server, front and mobile app.
 
-Did you know that "despite its name, salted duck eggs can also be made from
-chicken eggs, though the taste and texture will be somewhat different, and the
-egg yolk will be less rich."?
-([Wikipedia Link](https://en.wikipedia.org/wiki/Salted_duck_egg))
+What have I done:
+*   I Created webapp from ground up 
+*   Talked with a client about the requirements 
 
-Yeah, I didn't either.
+Technologies:
+*   Backend stack: node, mongodb
+*   Frontend stack: react, redux, thunk
+*   Mobile stack: react native
+

@@ -1,8 +1,7 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
-import Bio from "../components/bio"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import WorkExperience from "../components/WorkExperience"
 import Introduction from "../components/Introduction"
 import Divider from "../components/utils-components/divider"
@@ -13,23 +12,18 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `
 
-const BlogIndex = ({ data, location }) => {
-  // const siteTitle = data.site.siteMetadata?.title || `Title`
-  // const posts = data.allMarkdownRemark.nodes
-
-  return (
-    <div>
-      <SEO title="Main page" />
-      <Wrapper>
-        <Introduction />
-      </Wrapper>
-      <Divider />
-      <Wrapper>
-        <WorkExperience />
-      </Wrapper>
-    </div>
-  )
-}
+const BlogIndex = () => (
+  <div>
+    <Seo title="Main page" />
+    <Wrapper>
+      <Introduction />
+    </Wrapper>
+    <Divider />
+    <Wrapper>
+      <WorkExperience />
+    </Wrapper>
+  </div>
+)
 
 export const pageQuery = graphql`
   query {

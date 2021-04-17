@@ -1,29 +1,15 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
 import "./layout.css"
 import Navbar from "./navbar"
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
-  return (
-    <>
-      <Navbar />
-
-      <main>{children}</main>
-    </>
-  )
-}
+const Layout = ({ children }) => (
+  <>
+    <Navbar />
+    <main>{children}</main>
+  </>
+)
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

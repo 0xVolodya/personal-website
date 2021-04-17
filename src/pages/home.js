@@ -1,14 +1,10 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import Seo from "../components/seo"
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-
-const HomeIndex = ({ location }) => {
+const HomeIndex = () => {
   return (
     <div>
-      <SEO title="About" />
+      <Seo title="About" />
     </div>
   )
 }

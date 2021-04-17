@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import NavbarLinks from "./links"
+import { StaticImage } from "gatsby-plugin-image"
+import Link from "gatsby-link"
 
 const Navigation = styled.nav`
   height: 10vh;
@@ -87,20 +89,18 @@ const Hamburger = styled.div`
     top: 10px;
   }
 `
-const NavBarImage = styled.img`
-  max-width:100%;
-  max-height:100%;
-`
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false)
 
   return (
     <Navigation>
-      <NavBarImage
-        className="bio-avatar"
-        src="/images/retro-game.svg"
-        alt="navigation image"
-      />
+      <Link className="navigation-image-wrapper" to="/">
+        <StaticImage
+          className="bio-avatar"
+          src="../../images/retro-game.svg/"
+          alt="navigation image"
+        />
+      </Link>
       <Toggle
         navbarOpen={navbarOpen}
         onClick={() => setNavbarOpen(!navbarOpen)}
