@@ -6,8 +6,7 @@ import Link from "gatsby-link"
 
 const Navigation = styled.nav`
   height: 10vh;
-  display: flex;
-  background-color: #fff;
+  display: flex;  
   position: relative;
   justify-content: space-between;
   align-items: center;
