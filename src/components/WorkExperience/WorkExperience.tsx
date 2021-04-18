@@ -7,6 +7,7 @@ import ButtonBase from "@material-ui/core/ButtonBase"
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
 import { graphql, Link, useStaticQuery } from "gatsby"
 import styled from "styled-components"
+import { FileNode } from "gatsby-plugin-image/dist/src/components/hooks"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -59,6 +60,15 @@ const Description = styled.div`
   flex-direction: column;
 `
 
+interface DataItem {
+  node: {
+    logo: FileNode
+    href: string
+    title: string
+    date: string
+  }
+}
+
 const WorkExperience = function WorkExperience() {
   const classes = useStyles()
 
@@ -89,22 +99,21 @@ const WorkExperience = function WorkExperience() {
     <div>
       <h4>Work Experience</h4>
       <Grid container spacing={2}>
-        {array.map((item, index) => {
-          item = item.node
-          const image = getImage(item.logo)
+        {array.map((item: DataItem, index: number) => {
+          const image = getImage(item?.node?.logo)
           return (
             <Grid item lg={5} xs={12} key={index} className={classes.grid}>
               <Paper className={classes.paper}>
-                <Link to={item.href} className="link-wrapper">
+                <Link to={item.node.href} className="link-wrapper">
                   <WorkImageWrapper>
-                    <GatsbyImage image={image} alt="new" />
+                    {image &&<GatsbyImage image={image} alt="new" />}
                   </WorkImageWrapper>
                   <Description>
                     <Typography gutterBottom variant="subtitle1">
-                      {item.title}
+                      {item?.node?.title}
                     </Typography>
                     <Typography gutterBottom variant="subtitle1">
-                      {item.date}
+                      {item?.node?.date}
                     </Typography>
                   </Description>
                 </Link>
